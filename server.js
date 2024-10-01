@@ -1,68 +1,59 @@
-const userName = 'Harry';
-//userName = 'Ron';
-//console.log(userName);
 
-let age = 11;
 
-/*
-if(age < 11) {
-    console.log(`${userName}, you are too young Harry.`);
-}
-else if (age < 11) {
-    console.log(`You are too old ${userName}.`);
-}
-else {
-    console.log(`You are wizard ${userName}!`)
-}
-*/
-
-const isWizard = true;
-/*
-if (userName === 'Harry' && age === 11 && isWizard) {
-    console.log(`${userName}, here is the mythical letter!`);
-}
-else {
-    console.log(`Welp, you ain´t a wizard ${userName}..`);
-}
---------------------
-if(userName !== 'Harry' || age !== 11 || !isWizard) {
-    console.log(`Welp, you ain´t a wizard ${userName}..`)
-}
-else {
-    console.log(`${userName}, here is the mythical letter!`)
-}
----------------------
-for(let i = 0; i < 5; i++) {
-    console.log(`${i+1} What a wonderful day to be a wizard!`)
-}
----------------------
-*/
-let friends = ['Ron', 'Hermione', 'Hedwig'];
-
-friends.push('Draco');
-
-let numberOfFriends = friends.length;
-
-console.log(`${userName} has ${numberOfFriends} friends, named:`)
-for (let i = 0; i < friends.length; i++) {
-    if(friends[i] === 'Draco') {
-        weArentFriends(friends[i]);
-        continue;
+let friends = [
+    {
+        firstName: 'Harry',
+        age: 11,
+        isWizard: true,
+        friends: ['Ron', 'Hermione', 'Hedwig'],
+        introduce: function() {
+            console.log(`Greetings, I am ${this.firstName}.`);
+        }
+    },
+    {
+        firstName: 'Ron',
+        age: 11,
+        isWizard: true,
+        friends: ['Harry', 'Hermione', 'Hedwig'],
+        introduce: function() {
+            console.log(`Greetings, I am ${this.firstName}.`);
+        }        
+    },
+    {
+        firstName: 'Hermione',
+        age: 11,
+        isWizard: true,
+        friends: ['Ron', 'Harry', 'Hedwig'],
+        introduce: function() {
+            console.log(`Greetings, I am ${this.firstName}.`);
+        }        
+    },
+    {
+        firstName: 'Hedwig',
+        age: 'TBA',
+        isWizard: false,
+        friends: ['Ron', 'Hermione', 'Harry'],
+        introduce: function() {
+            console.log(`${this.firstName} makes noises.`);
+        }                
     }
-    friends[i] = friends[i] + '*';
-    greeting(friends[i]);
-    //console.log(`${i+1}. ${friends[i]}`);
-}
+]
 
-friends.forEach(friend => {
-    console.log(friend);
+
+let studentsFilter = friends.filter(friend => {
+    if(friend.isWizard === true) {
+        return friend;
+    }
+});
+
+let studentsList = studentsFilter.map(student => {
+    return student.firstName;
+});
+
+const studentsSort = studentsList.sort((a, b) => {
+    return b.localeCompare(a)
 });
 
 
-function greeting(friendsName) {
-    console.log(`Hello, ${friendsName}!`);
-}
+console.log(studentsSort)
 
-function weArentFriends(notFriendsName) {
-    console.log(`WE AINT FRIENDS, ${notFriendsName}!`);
-}
